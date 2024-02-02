@@ -1,0 +1,1311 @@
+TLC2 Version 2.18 of Day Month 20?? (rev: ae8917b)
+Warning: Please run the Java VM, which executes TLC with a throughput optimized garbage collector, by passing the "-XX:+UseParallelGC" property.
+(Use the -nowarning option to disable this warning.)
+Running breadth-first search Model-Checking with fp 129 and seed -4356275490186288744 with 1 worker on 8 cores with 4096MB heap and 64MB offheap memory [pid: 66540] (Mac OS X 13.6.3 aarch64, Azul Systems, Inc. 15.0.3 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/willyschultz/Desktop/scratch/on-epaxos-correctness/tla+/CounterExample.tla
+Parsing file /Users/willyschultz/Desktop/scratch/on-epaxos-correctness/tla+/EgalitarianPaxos.tla
+Parsing file /private/var/folders/f8/s3kg1k4d4fd6zkzkrw8xbk_80000gn/T/tlc-13595776853645373569/TLC.tla (jar:file:/usr/local/tla2tools-v1.8.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /private/var/folders/f8/s3kg1k4d4fd6zkzkrw8xbk_80000gn/T/tlc-13595776853645373569/Naturals.tla (jar:file:/usr/local/tla2tools-v1.8.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /usr/local/lib/tlaps/FiniteSets.tla
+Parsing file /private/var/folders/f8/s3kg1k4d4fd6zkzkrw8xbk_80000gn/T/tlc-13595776853645373569/Sequences.tla (jar:file:/usr/local/tla2tools-v1.8.jar!/tla2sany/StandardModules/Sequences.tla)
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module EgalitarianPaxos
+Semantic processing of module TLC
+Semantic processing of module CounterExample
+Starting... (2024-02-01 22:16:28)
+Implied-temporal checking--satisfiability problem has 6 branches.
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2024-02-01 22:16:28.
+Error: Temporal properties were violated.
+
+Error: The following behavior constitutes a counter-example:
+
+State 1: <Initial predicate>
+/\ sentMsg = {}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 1 @@ p2 :> 1 @@ p3 :> 1)
+/\ ballots = 1
+/\ cmdLog = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ HIndex = 1
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 2: <NewNext line 33, col 16 to line 33, col 50 of module CounterExample>
+/\ sentMsg = { [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 1 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 1
+/\ cmdLog = ( p1 :> {} @@
+  p2 :> {} @@
+  p3 :>
+      { [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 2
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 3: <NewNext line 34, col 16 to line 34, col 50 of module CounterExample>
+/\ sentMsg = { [ type |-> "pre-accept",
+    src |-> p1,
+    dst |-> p3,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    cmd |-> c2,
+    deps |-> {},
+    seq |-> 1 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 1
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :> {} @@
+  p3 :>
+      { [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 3
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 4: <NewNext line 35, col 16 to line 35, col 51 of module CounterExample>
+/\ sentMsg = { [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p3,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 1
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :> {} @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "pre-accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 4
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 5: <NewNext line 36, col 16 to line 36, col 68 of module CounterExample>
+/\ sentMsg = { [ type |-> "prepare",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<1, p3>> ],
+  [ type |-> "prepare",
+    src |-> p3,
+    dst |-> p3,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<1, p3>> ],
+  [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p3,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 2
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :> {} @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "pre-accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 5
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {<<p1, 1>>})
+
+State 6: <NewNext line 37, col 16 to line 37, col 52 of module CounterExample>
+/\ sentMsg = {[type |-> "prepare", src |-> p3, dst |-> p3, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "prepare-reply", src |-> p2, dst |-> p3, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> none, deps |-> {}, seq |-> 0, prev_ballot |-> <<0, p2>>, status |-> "not-seen"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 2
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> none,
+          deps |-> {},
+          seq |-> 0,
+          status |-> "not-seen" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "pre-accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 6
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {<<p1, 1>>})
+
+State 7: <NewNext line 38, col 16 to line 38, col 52 of module CounterExample>
+/\ sentMsg = {[committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "prepare-reply", src |-> p2, dst |-> p3, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> none, deps |-> {}, seq |-> 0, prev_ballot |-> <<0, p2>>, status |-> "not-seen"], [type |-> "prepare-reply", src |-> p3, dst |-> p3, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<0, p1>>, status |-> "pre-accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 2
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> none,
+          deps |-> {},
+          seq |-> 0,
+          status |-> "not-seen" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "pre-accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 7
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {<<p1, 1>>})
+
+State 8: <NewNext line 39, col 16 to line 39, col 72 of module CounterExample>
+/\ sentMsg = { [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p3,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ],
+  [ type |-> "accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<1, p3>>,
+    cmd |-> c2,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 2
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> none,
+          deps |-> {},
+          seq |-> 0,
+          status |-> "not-seen" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {<<p1, 1>>, <<p3, 1>>})
+/\ HIndex = 8
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 9: <NewNext line 40, col 16 to line 40, col 68 of module CounterExample>
+/\ sentMsg = { [ type |-> "prepare",
+    src |-> p2,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<2, p2>> ],
+  [ type |-> "prepare",
+    src |-> p2,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<2, p2>> ],
+  [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p3,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ],
+  [ type |-> "accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<1, p3>>,
+    cmd |-> c2,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 3
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<0, p1>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> none,
+          deps |-> {},
+          seq |-> 0,
+          status |-> "not-seen" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {<<p1, 1>>, <<p3, 1>>})
+/\ HIndex = 9
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {})
+
+State 10: <NewNext line 41, col 16 to line 41, col 52 of module CounterExample>
+/\ sentMsg = {[type |-> "prepare", src |-> p2, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p1, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>, cmd |-> c2, deps |-> {}, seq |-> 1, prev_ballot |-> <<0, p1>>, status |-> "pre-accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 3
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> none,
+          deps |-> {},
+          seq |-> 0,
+          status |-> "not-seen" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {} @@ p3 :> {<<p1, 1>>, <<p3, 1>>})
+/\ HIndex = 10
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {})
+
+State 11: <NewNext line 42, col 16 to line 42, col 53 of module CounterExample>
+/\ sentMsg = {[committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p1, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>, cmd |-> c2, deps |-> {}, seq |-> 1, prev_ballot |-> <<0, p1>>, status |-> "pre-accepted"], [type |-> "prepare-reply", src |-> p2, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>, cmd |-> none, deps |-> {}, seq |-> 0, prev_ballot |-> <<1, p3>>, status |-> "not-seen"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 3
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> none,
+          deps |-> {},
+          seq |-> 0,
+          status |-> "not-seen" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {} @@ p3 :> {<<p1, 1>>, <<p3, 1>>})
+/\ HIndex = 11
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {})
+
+State 12: <NewNext line 43, col 16 to line 43, col 73 of module CounterExample>
+/\ sentMsg = { [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p3,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ],
+  [ type |-> "pre-accept",
+    src |-> p2,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<2, p2>>,
+    cmd |-> c2,
+    deps |-> {<<p1, 1>>},
+    seq |-> 1 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ],
+  [ type |-> "accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<1, p3>>,
+    cmd |-> c2,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 3
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p1, 1>>, <<p3, 1>>})
+/\ HIndex = 12
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 13: <NewNext line 44, col 16 to line 44, col 52 of module CounterExample>
+/\ sentMsg = { [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p1,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<2, p2>>,
+    deps |-> {<<p1, 1>>},
+    seq |-> 2 ],
+  [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p3,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ],
+  [ type |-> "accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<1, p3>>,
+    cmd |-> c2,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 3
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "pre-accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p1, 1>>, <<p3, 1>>})
+/\ HIndex = 13
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 14: <NewNext line 45, col 16 to line 45, col 68 of module CounterExample>
+/\ sentMsg = { [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p3,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ],
+  [ type |-> "accept",
+    src |-> p2,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<2, p2>>,
+    cmd |-> c2,
+    deps |-> {<<p1, 1>>},
+    seq |-> 2 ],
+  [ type |-> "accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<1, p3>>,
+    cmd |-> c2,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 3
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "pre-accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p1, 1>>, <<p3, 1>>})
+/\ HIndex = 14
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 15: <NewNext line 46, col 16 to line 46, col 52 of module CounterExample>
+/\ sentMsg = { [ type |-> "accept-reply",
+    src |-> p1,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<2, p2>> ],
+  [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p3,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ],
+  [ type |-> "accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<1, p3>>,
+    cmd |-> c2,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 3
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p1, 1>>, <<p3, 1>>})
+/\ HIndex = 15
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 16: <NewNext line 47, col 16 to line 47, col 69 of module CounterExample>
+/\ sentMsg = { [ type |-> "prepare",
+    src |-> p1,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<3, p1>> ],
+  [ type |-> "prepare",
+    src |-> p1,
+    dst |-> p3,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<3, p1>> ],
+  [ type |-> "accept-reply",
+    src |-> p1,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<2, p2>> ],
+  [ committed |-> {},
+    type |-> "pre-accept-reply",
+    src |-> p3,
+    dst |-> p1,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<0, p1>>,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ],
+  [ type |-> "pre-accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p3, 1>>,
+    ballot |-> <<0, p3>>,
+    cmd |-> c1,
+    deps |-> {},
+    seq |-> 1 ],
+  [ type |-> "accept",
+    src |-> p3,
+    dst |-> p2,
+    inst |-> <<p1, 1>>,
+    ballot |-> <<1, p3>>,
+    cmd |-> c2,
+    deps |-> {<<p3, 1>>},
+    seq |-> 2 ] }
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 4
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<1, p3>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p1, 1>>, <<p3, 1>>})
+/\ HIndex = 16
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {})
+
+State 17: <NewNext line 48, col 16 to line 48, col 53 of module CounterExample>
+/\ sentMsg = {[type |-> "prepare", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>], [type |-> "accept-reply", src |-> p1, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<1, p3>>, status |-> "accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 4
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<3, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 17
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {})
+
+State 18: <NewNext line 49, col 16 to line 49, col 69 of module CounterExample>
+/\ sentMsg = {[type |-> "prepare", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>], [type |-> "prepare", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>], [type |-> "prepare", src |-> p1, dst |-> p3, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>], [type |-> "accept-reply", src |-> p1, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<1, p3>>, status |-> "accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 5
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<3, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 18
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {})
+
+State 19: <NewNext line 50, col 16 to line 50, col 53 of module CounterExample>
+/\ sentMsg = {[type |-> "prepare", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>], [type |-> "prepare", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>], [type |-> "accept-reply", src |-> p1, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<1, p3>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<3, p1>>, status |-> "accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 5
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 19
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {})
+
+State 20: <NewNext line 51, col 16 to line 51, col 53 of module CounterExample>
+/\ sentMsg = {[type |-> "prepare", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>], [type |-> "accept-reply", src |-> p1, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p1, 1>>}, seq |-> 2, prev_ballot |-> <<2, p2>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<1, p3>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<3, p1>>, status |-> "accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 5
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<3, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 20
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {})
+
+State 21: <NewNext line 52, col 16 to line 52, col 53 of module CounterExample>
+/\ sentMsg = {[type |-> "accept-reply", src |-> p1, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p1, 1>>}, seq |-> 2, prev_ballot |-> <<2, p2>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>, cmd |-> c2, deps |-> {<<p1, 1>>}, seq |-> 2, prev_ballot |-> <<3, p1>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<1, p3>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<3, p1>>, status |-> "accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 5
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 21
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {})
+
+State 22: <NewNext line 53, col 16 to line 53, col 73 of module CounterExample>
+/\ sentMsg = {[type |-> "accept-reply", src |-> p1, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p1, dst |-> p3, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p1, 1>>}, seq |-> 2, prev_ballot |-> <<2, p2>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<1, p3>>, status |-> "accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 5
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 22
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 23: <NewNext line 54, col 16 to line 54, col 52 of module CounterExample>
+/\ sentMsg = {[type |-> "accept-reply", src |-> p1, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<2, p2>>], [type |-> "accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p1, 1>>}, seq |-> 2, prev_ballot |-> <<2, p2>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<1, p3>>, status |-> "accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 5
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {<<p1, 1>>} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 23
+/\ committed = ( <<p1, 1>> :> {} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 24: <NewNext line 55, col 16 to line 55, col 72 of module CounterExample>
+/\ sentMsg = {[type |-> "accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<4, p1>>], [type |-> "commit", inst |-> <<p1, 1>>, ballot |-> <<2, p2>>, cmd |-> c2, deps |-> {<<p1, 1>>}, seq |-> 2], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p1, 1>>}, seq |-> 2, prev_ballot |-> <<2, p2>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<1, p3>>, status |-> "accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 5
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "committed" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {<<p1, 1>>} @@ p2 :> {} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 24
+/\ committed = ( <<p1, 1>> :> {<<c2, {<<p1, 1>>}, 2>>} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+State 25: <NewNext line 56, col 16 to line 56, col 72 of module CounterExample>
+/\ sentMsg = {[type |-> "commit", inst |-> <<p1, 1>>, ballot |-> <<2, p2>>, cmd |-> c2, deps |-> {<<p1, 1>>}, seq |-> 2], [type |-> "commit", inst |-> <<p1, 1>>, ballot |-> <<4, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [committed |-> {}, type |-> "pre-accept-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<0, p1>>, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "pre-accept", src |-> p3, dst |-> p2, inst |-> <<p3, 1>>, ballot |-> <<0, p3>>, cmd |-> c1, deps |-> {}, seq |-> 1], [type |-> "accept", src |-> p3, dst |-> p2, inst |-> <<p1, 1>>, ballot |-> <<1, p3>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2], [type |-> "prepare-reply", src |-> p1, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p1, 1>>}, seq |-> 2, prev_ballot |-> <<2, p2>>, status |-> "accepted"], [type |-> "prepare-reply", src |-> p3, dst |-> p1, inst |-> <<p1, 1>>, ballot |-> <<3, p1>>, cmd |-> c2, deps |-> {<<p3, 1>>}, seq |-> 2, prev_ballot |-> <<1, p3>>, status |-> "accepted"]}
+/\ executed = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+/\ crtInst = (p1 :> 2 @@ p2 :> 1 @@ p3 :> 2)
+/\ ballots = 5
+/\ cmdLog = ( p1 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "committed" ] } @@
+  p2 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<2, p2>>,
+          cmd |-> c2,
+          deps |-> {<<p1, 1>>},
+          seq |-> 2,
+          status |-> "committed" ] } @@
+  p3 :>
+      { [ inst |-> <<p1, 1>>,
+          ballot |-> <<4, p1>>,
+          cmd |-> c2,
+          deps |-> {<<p3, 1>>},
+          seq |-> 2,
+          status |-> "accepted" ],
+        [ inst |-> <<p3, 1>>,
+          ballot |-> <<0, p3>>,
+          cmd |-> c1,
+          deps |-> {},
+          seq |-> 1,
+          status |-> "pre-accepted" ] } )
+/\ leaderOfInst = (p1 :> {} @@ p2 :> {} @@ p3 :> {<<p3, 1>>})
+/\ HIndex = 25
+/\ committed = ( <<p1, 1>> :> {<<c2, {<<p1, 1>>}, 2>>, <<c2, {<<p3, 1>>}, 2>>} @@
+  <<p1, 2>> :> {} @@
+  <<p2, 1>> :> {} @@
+  <<p2, 2>> :> {} @@
+  <<p3, 1>> :> {} @@
+  <<p3, 2>> :> {} )
+/\ proposed = {c1, c2}
+/\ preparing = (p1 :> {} @@ p2 :> {} @@ p3 :> {})
+
+30 states generated, 30 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 25.
+Finished in 00s at (2024-02-01 22:16:28)
